@@ -15,7 +15,12 @@ const blog = (await getCollection("blog"))
 const projects = (await getCollection("projects"))
   .filter(project => !project.data.draft)
   .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
-  .slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
+.slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
+
+const configs = (await getCollection("configs"))
+  .filter(config => !config.data.draft)
+  .sort((a, b) => b.data.date.valueOf() - a.data.date.valueOf())
+.slice(0,SITE.NUM_PROJECTS_ON_HOMEPAGE);
 
 const allwork = (await getCollection("work"))
   .sort((a, b) => new Date(b.data.dateStart).valueOf() - new Date(a.data.dateStart).valueOf())
@@ -33,53 +38,59 @@ const work = await Promise.all(
 <PageLayout title={HOME.TITLE} description={HOME.DESCRIPTION}>
   <Container>
     <h4 class="animate font-semibold text-black dark:text-white">
-      Hi, I'm Nano <span class="text-xl">👋🏻</span> 
+      Hi, I'm Kiran Yadav, <span class="text-xl">👋🏻</span> 
     </h4>
     <div class="space-y-16">
       <section>
         <article class="space-y-4">
           <p class="animate">
-            I am a minimal, seo friendly, accessible portfolio and blog for developers. 
-            I am an even more lightweight version of my popular theme
-            <Link href="https://github.com/markhorn-dev/astro-sphere" aria-label="Astro Sphere on Github" external>
-              Astro Sphere
-            </Link>.
-            I have a lighthouse scores of 100 across the board for performance, 
-            accesibility, best practices and SEO.
+            A backend software developer based in Mumbai.</Br>I specialize in building innovative products and enjoy tackling complex programming challenges. My experience includes backend technologies like Node.js and Go, as well as strong proficiency in both SQL and NoSQL databases, including PostgreSQL and MongoDB. I also work with Elasticsearch and Redis to create efficient, scalable systems that effectively manage data. I implement various communication protocols such as REST, WebSocket, and Kafka to ensure seamless data flow and real-time interactions.</p>
+          <p class="animate">Currently, I’m exploring Arch Linux with Hyperland, enjoying the customization and flexibility it offers for my development environment. I use Neovim as my editor for its efficiency and power. Collaboration is key to my approach, and I thrive in team environments where ideas can be shared and developed. If you’re interested in connecting or learning more about my work, feel free to reach out!
           </p>
-          <p class="animate">
-            I come packed with full type safety, a sitemap, an rss feed, markdown 
-            and mdx support (use components in your markdown) through astro integrations.
-            I am styled with tailwind and come preconfigured with light, dark and 
-            system/os theme preferences out of the box.
-          </p>
-          <p class="animate">
-            Visit
-            <Link href="https://github.com/markhorn-dev/astro-nano" aria-label="Astro Nano on Github" external>
-              Astro Nano on Github
-            </Link>
-            to fork the repository, read the docs or one-click deploy on Vercel or Netlify. 
-          </p>
+          <!-- <p class="animate"> -->
+          <!--   Visit -->
+          <!--   <Link href="https://github.com/markhorn-dev/astro-nano" aria-label="Astro Nano on Github" external> -->
+          <!--     Astro Nano on Github -->
+          <!--   </Link> -->
+          <!--   to fork the repository, read the docs or one-click deploy on Vercel or Netlify.  -->
+          <!-- </p> -->
         </article>
       </section>
-
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
           <h5 class="font-semibold text-black dark:text-white">
-            Latest posts
+            Latest Configurations
           </h5>
-          <Link href="/blog">
-            See all posts
+          <Link href="/configs">
+            See all configs
           </Link>
         </div>
         <ul class="flex flex-col gap-4">
-          {blog.map(post => (
+          {configs.map(config => (
             <li>
-              <ArrowCard entry={post} />
+              <ArrowCard entry={config} />
             </li>
           ))}
         </ul>
       </section>
+
+      <!-- <section class="animate space-y-6"> -->
+      <!--   <div class="flex flex-wrap gap-y-2 items-center justify-between"> -->
+      <!--     <h5 class="font-semibold text-black dark:text-white"> -->
+      <!--       Latest posts -->
+      <!--     </h5> -->
+      <!--     <Link href="/blog"> -->
+      <!--       See all posts -->
+      <!--     </Link> -->
+      <!--   </div> -->
+      <!--   <ul class="flex flex-col gap-4"> -->
+      <!--     {blog.map(post => ( -->
+      <!--       <li> -->
+      <!--         <ArrowCard entry={post} /> -->
+      <!--       </li> -->
+      <!--     ))} -->
+      <!--   </ul> -->
+      <!-- </section> -->
 
       <section class="animate space-y-6">
         <div class="flex flex-wrap gap-y-2 items-center justify-between">
